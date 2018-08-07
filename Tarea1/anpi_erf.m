@@ -1,4 +1,27 @@
+#Ejercicio 1
+
 function [v,ev,ea,n] = anpi_erf(x,k)
+  error = "";
+  mensaje = "";
+  if !(isa(x,"numeric")) 
+    error = " x debe ser un numero "
+    break
+  elseif ! (abs(mod(k,1))==0) 
+    error = "k debe ser un numero entero"
+    break
+  elseif k<=0
+    error = "k debe ser un numero entero positivo"
+  elseif isa(x,"single") & k>8
+    mensaje = "Para un x de tipo single, k debe tener un valor máximo de 8"
+    k = 8
+  elseif isa(x,"double") & k>17
+    mensaje = "Para un x de tipo double, k debe tener un valor máximo de 17"
+    k = 17
+  endif
+      
+  
+  
+  
   aprox_actual = 0;
   aprox_anterior = 0;
   es = 0.5*10^(2-k);
@@ -17,5 +40,4 @@ function [v,ev,ea,n] = anpi_erf(x,k)
   ea = abs(1- (aprox_anterior/aprox_actual))*100
   n = i-1
 endfunction
-
 
